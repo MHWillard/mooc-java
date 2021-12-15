@@ -1,0 +1,175 @@
+JAVA/OOP NOTES
+
+Java is an object-oriented language
+-> it's also strongly typed and compiled, which may be why when at higher scales it's much slower
+--everything's done in classes: you also have to tell your IDE which class to run
+
+-> variables are typed, but otherwise follows what you'd expect from past languages you used
+--it's pretty similar to JS in terms of basics
+
+### METHODS
+PUBLIC/PRIVATE/PROTECTED: hey can people access this outside of the class or not? can it be accessed in inheritated instances of the class only (protected)?
+STATIC: it can't be used to access variables that belong to objects
+VOID: what's the data type of the output it returns? Maybe it's String, maybe it's Integer; if no type, use VOID
+ARGS: what's the data type of the passed argument?
+
+public static void greet(int numOfTimes) {
+	int i = 0;
+		while (i < numOFTimes) {
+			System.out.println("Hello");
+			i++;
+		}
+}
+greet(5);
+
+-> YOU CAN USE AN OBJECT AS A METHOD PARAMETER:
+public boolean allowedToRide(Person person) { //return a boolean
+	if (person.getHeight < this.lowestHeight) {
+		return false;
+	}
+}
+
+**REMEMBER: PARAMETER VALUES ARE COPIED AND DON'T MODIFY THE ORIGINAL!**
+- As always: declare variables inside methods => they are private only to that method
+
+=THE CALL STACK
+Functions are called in order: Last In First Out
+--laid on the call stack
+
+### DATA STRUCTURES
+**LISTS**
+REFERENCE TYPE: holds reference (pointer!) to the location with the values: ArrayList<>
+
+You use ArrayList which is an imported object: ArrayList<Type> to store things of that type
+`import java.util.ArrayList;
+
+ArrayList<String> list = new ArrayList<>();`
+
+-> 0 index with get method: list.get(0);
+-> size of list: list.size();
+`for (int i = 0; i > list.size(); i++) {
+	//code
+}`
+-> remove item: list.remove(0);
+
+* FOR EACH: (for each car in cars:)
+`for (String car: cars) {
+	System.out.println(car);
+}`
+
+* AS A PARAMETER:
+public static void print(ArrayList<string> list) {
+	for (String value: list) {
+		System.out.println(value);
+	}
+}
+
+**ARRAYS**
+REFERENCE TYPE: holds reference (pointer!) to the location with the values
+
+So much like in C, an Array has to be defined with its number of available elements in memory:
+`int[] numbers = new int[3];`
+SHORTER METHOD:
+`int[] numbers = {5,10,15};
+
+-> array length: numbers.length
+-> parameter: listElements(int[] intArray)
+
+### VALUE TYPES AND REFERENCE TYPES
+VALUE (PRIMITIVE): hold the actual value: int, bool, etc. - immutable
+REFERENCE: holds reference (pointer!) to the location with the values: ArrayList<>, String
+--Classes are special data types anyway
+
+-> COPIES of values or their references are passed to a method to use
+
+### CLASSES AND OBJECTS ###
+So Java is an object-oriented language so everything is built with classes like objects
+-CLASSES are the blueprints
+-OBJECTS are the instances built from these blueprints
+
+A CLASS HAS:
+-INSTANCE VARIABLES: like its properties, its internal state at any time
+-> REMEMBER: private means it's private inside of the object and stuff outside of it can't touch it!
+-METHODS: the functions inside of the class that does stuff
+-> as always: turn 'void' into a data type to return something
+* EXTERNAL METHOD CALL: object.Method();
+* INTERNAL METHOD CALL: Method();
+-CONSTRUCTOR: when building a new instance of object, constructor pre-arms the object with values (it can also have an argument)
+-> can have multiple constructors as long as they're not exactly the same; one can call another to avoid repeating code
+-GETTER: method that gets the value of an instance variable
+-SETTER: method that sets value of an instance variable
+
+```
+public class Car {
+	private String model;
+	private int mileage;
+	
+	public Car(String chosenModel) { //the constructor
+		this.model = chosenModel;
+		this.mileage = 15000;
+	}
+	
+	public Car(String chosenModel, int mileage) { //overloaded alt constructor
+		this.model = chosenModel;
+		this.mileage = mileage;
+	}
+	
+	public void setModel(String newModel) { //setter
+		this.model = newModel;
+	}
+	
+	public String getModel() { //getter
+		return this.model;
+	}
+	
+	public void drive() { //a method
+		this.mileage = this.mileage + 100;
+	}
+}
+```
+
+This is how you get the box you see in OOP diagrams:
+Car
+--------------
+-model: String
+-mileage: int
+--------------
++Car(chosenModel: String) //the constructor
+
+1. define the object as a .java file: Book.java
+2. make a new instance: Book newBook = new Book();
+
+> OBJECTS CAN CONTAIN REFERENCES TO OTHER OBJECTS:
+public class Person {
+	private String name; //this was an object anyway
+	private SimpleDate birthday; //SimpleDate is a custom date object
+	
+	public Person(String name, SimpleDate date) {
+		this.name = name;
+		this.birthday = date;
+	}
+	
+	public Person(String name, int day, int month, int year) { //constructor two
+		this.name = name;
+		this.birthday = new SimpleDate(day, month, year) //assign it the object
+	}
+}
+
+-->can you see already how to do this with linked list nodes, maybe?
+
+> OBJECTS OF SAME TYPE CAN BE USED AS METHOD PARAMETERS:
+
+### OBJECT ORIENTED PROGRAMMING CONCEPTS ###
+The whole big reasons to do OOP:
+
+1. make code more clear and understandable to humans
+2. segment programs into pieces so changes are easier and less widely disruptive
+3. abstract and hide other code for greater control over what can touch what
+4. make it easier to read, edit, and collaborate with teams
+5. make programs into chunks that work together; more modular and easier to compose
+
+=BEST PRACTICES:
+-it's good to keep objects more unaware of things dependent on other projects, more modular and focused on one thing; this way, if you need to make changes, you don't need to be updating multiple objects at once
+	-DON'T make like a big superclass: make a Car, make a Mechanic, make a RepairJob, etc.
+	-Try to make objects UNAWARE OF WHAT'S IN OTHER OBJECTS most of the time to act independently
+-focus on giving each concept clear responsibilities => abstracting
