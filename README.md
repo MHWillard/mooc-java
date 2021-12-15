@@ -1,1 +1,3 @@
 # mooc-java
+
+These are assorted notes and projects from the University of Helsinki's free massive open online course about Java. [Click here to visit the course.](https://java-programming.mooc.fi/) I started going through this course after completing roughly half of CS50 - I was interested in learning Java in order to strengthen my OOP programming and static typing knowledge, and Java was a commonly recommended language to study in online CS curriculums I found. You'll find course notes and larger Java projects from the course in this repo - most of the coursework is inline exercises done through their custom install of the Netbeans IDE, which is a little tricky to post here.
