@@ -11,6 +11,7 @@ Java is an object-oriented language
 PUBLIC/PRIVATE/PROTECTED: hey can people access this outside of the class or not? can it be accessed in inheritated instances of the class only (protected)?
 STATIC: it can't be used to access variables that belong to objects
 VOID: what's the data type of the output it returns? Maybe it's String, maybe it's Integer; if no type, use VOID
+FINAL: a variable with this can't be modified in the object after being initially set
 ARGS: what's the data type of the passed argument?
 
 public static void greet(int numOfTimes) {
@@ -157,7 +158,36 @@ public class Person {
 
 -->can you see already how to do this with linked list nodes, maybe?
 
-> OBJECTS OF SAME TYPE CAN BE USED AS METHOD PARAMETERS:
+> OBJECTS OF SAME TYPE CAN BE USED AS METHOD PARAMETERS
+> CAN USE CONTAINS() AND EQUALS() TO SEE IF OBJECTS EQUAL EACH OTHER
+> METHODS CAN RETURN OBJECTS:
+public class Factory {
+	private String make;
+	
+	public Factory (String make) { //Factory constructor
+		this.make = make;
+	}
+	
+	public Car produceCar() { //create and return Car objects
+		return new Car(this.make);
+	}
+}
+
+### DATA STRUCTURES IN JAVA ###
+* LISTS
+Objects can contain lists, and lists can be made of objects.
+	-The instance variable with a list can have object types you specify, even ones you make up: 
+	--private ArrayList<Person> riding //List of Person objects
+
+* STACK
+Remember that it's a FIFO structure, first item in, first item out. You can implement this in Java as an object.
+public Stack {
+	private ArrayList<String> = stack;
+		
+	public Stack() {
+		this.stack = new ArrayList<>();
+	}
+}
 
 ### OBJECT ORIENTED PROGRAMMING CONCEPTS ###
 The whole big reasons to do OOP:
