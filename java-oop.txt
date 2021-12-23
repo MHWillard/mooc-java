@@ -178,6 +178,10 @@ public class Factory {
 Objects can contain lists, and lists can be made of objects.
 	-The instance variable with a list can have object types you specify, even ones you make up: 
 	--private ArrayList<Person> riding //List of Person objects
+	--arr.get(0) = get value in array at index 0
+	--add and remove: can add/remove the object or do it by index
+		arr.add(object); arr.remove(object);
+	-Java utilities let you pull objects a little more nicely.
 
 * STACK
 Remember that it's a FIFO structure, first item in, first item out. You can implement this in Java as an object.
@@ -187,6 +191,15 @@ public Stack {
 	public Stack() {
 		this.stack = new ArrayList<>();
 	}
+	
+	public void add(String value) {
+        this.stack.add(0, value);
+    }
+    
+    public String take() {
+        String value = this.stack.remove(0);
+        return value;
+    }
 }
 
 ### OBJECT ORIENTED PROGRAMMING CONCEPTS ###
@@ -197,6 +210,31 @@ The whole big reasons to do OOP:
 3. abstract and hide other code for greater control over what can touch what
 4. make it easier to read, edit, and collaborate with teams
 5. make programs into chunks that work together; more modular and easier to compose
+
+=INTERFACES
+so it's good to seperate a USER INTERFACE from the PROGRAM LOGIC
+	-this way, all you need to do is change the logic in one place and keep things ABSTRACT; this way the UI doesn't need to know what the program does, and for example, a user can just communicate through the UI
+	-this helps protect what's in the logic
+	-you can see what's an abstraction, a concept, and often break it out into a class of its own
+	public class UserInterface {
+		private Scanner scanner;
+		private WordSet wordSet;
+		
+		public UserInterface(WordSet wordSet, Scanner scanner) {
+			this.wordSet = wordSet;
+			this.scanner = scanner;
+		}
+	}
+
+=ENCAPSULATION
+Another trade off of interfaces: encapsulation; it's basically having everything contained in its own module
+	-thus, changes to WordSet wouldn't affect UserInterface; UI still works EXACTLY like before, which is great for later updates in less places at once
+	--so if WordSet gets a palindromes function, it handles that, and UI doesn't change at all
+-ALSO: reusing code ELSEWHERE is easier when doing it like this
+
+=ABSTRACTION
+
+=POLYMORPHISM
 
 =BEST PRACTICES:
 -it's good to keep objects more unaware of things dependent on other projects, more modular and focused on one thing; this way, if you need to make changes, you don't need to be updating multiple objects at once
