@@ -202,6 +202,35 @@ public Stack {
     }
 }
 
+### TESTING ###
+Remember that we typically use testing suites to run tests.
+UNIT TESTING is testing a chunk of program at a time with test inputs that assert for outcomes and see what it throws. Easier to automate and easier to do when working with classes and methods.
+
+INTEGRATION TESTING tests the whole shebang together. Useful, but can't automate it as well.
+
+-TEST-DRIVEN DEVELOPMENT is all about using tests to code software. Write the test first for new functionality - it fails. Then, write the code you need to pass the test. Repeat, testing, adding new code, then running the tests again. Refactor and edit as you go.
+	So if I wanted to give my Calculator the ability to add, I'd write something like `assertEquals(5, calculator.add()); This would fail. Then I write:
+		public int add(int one, int two) {
+			return one + two;
+		}
+	Then I can do assertEquals(5, calculator.add(2, 3)); to check for a pass.
+
+-Test early, test often.
+-Check for initialized and correctly named variables; missing parentheses and semicolons, etc.
+-Use debuggers to walk through a program and logs to find out the problem.
+
+In Java, JUnit is a popular testing framework. You can use it to write tests for your existing classes. Use @Test annotations to tell JUnit that it's a test.
+
+public class CalculatorTest { //'Test' on the end is needed to clarify that it's a test.
+	@Test //use this annotation to tell the framework that's a test.
+	public void calculatorInitialZero() {
+		Calculator calc = new Calculator;
+		assertEquals(0, calc.getValue()); //check that getValue returns 0 properly
+	}
+}
+
+^ You can add other methods, perform operations, and then assert that the output is ehat you expect.
+
 ### OBJECT ORIENTED PROGRAMMING CONCEPTS ###
 The whole big reasons to do OOP:
 
@@ -232,6 +261,8 @@ Another trade off of interfaces: encapsulation; it's basically having everything
 	--so if WordSet gets a palindromes function, it handles that, and UI doesn't change at all
 -ALSO: reusing code ELSEWHERE is easier when doing it like this
 
+Uncle Bob calls this the "single responsibility principle", making sure everything does one thing or has one narrow business function
+
 =ABSTRACTION
 
 =POLYMORPHISM
@@ -241,3 +272,26 @@ Another trade off of interfaces: encapsulation; it's basically having everything
 	-DON'T make like a big superclass: make a Car, make a Mechanic, make a RepairJob, etc.
 	-Try to make objects UNAWARE OF WHAT'S IN OTHER OBJECTS most of the time to act independently
 -focus on giving each concept clear responsibilities => abstracting
+
+### ALGORITHMS ###
+Remember:
+1. Algorithms are instructions for solving specific problems. A function, technically, is an algorithm.
+2. However, in most contexts, it means specific algorithms for problems such as sorting and searching.
+3. Algorithms of this type are often evaluated by the number of needed operations, its efficiency. Big O notation is a shorthand of writing these number of needed operations. Usually you want your search and sort as fast as possible, and this can also be affected by your algorithms and the types of data structures you use (such as lists, arrays, stacks, dictionaries, hash mapes, queues, trees, etc.)
+-> FORTUNATELY: Java has premade libraries that automate a lot of these types of commonly used algos. These are usually in the Arrays or Collections class.
+
+=SELECTION SORT
+Using an array:
+-look at index 0, swap 0 and 1 with whatever's smaller
+-look at index 1, swap 1 and 2 with whatever's smaller
+then you repeat until the end of the array
+
+=LINEAR SEARCH
+Go through each item in order in an array until you find it
+-this is O(n) and man it's slow with huge lists
+
+=BINARY SEARCH
+FIRST: sort the array
+SECOND: look at the first half: if it's not there, toss it out and look only at the rest going forward
+--repeat this over and over, splitting in half by what you keep until each time until you find out
+--this drastically cuts down search time
