@@ -15,15 +15,9 @@ public class Main {
     */
     public static void main(String[] args) {
         Point points = new Point();
+        
+        UserInterface ui = new UserInterface(points);
     
-        points.addPoints(10);
-        points.addPoints(20);
-        points.addPoints(30);
-        
-        points.printPoints();
-        
-        Grade grade = new Grade(points);
-        
-        System.out.println("avg: " + grade.average());
+        ui.start();
     }
 }

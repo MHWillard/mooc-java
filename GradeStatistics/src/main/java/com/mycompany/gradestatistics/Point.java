@@ -23,7 +23,9 @@ public class Point {
     
     //add number to point list
     public void addPoints(int score) {
-        this.points.add(score);
+        if (score >= 0 && score <= 100) {
+            this.points.add(score);
+        }
     }
     
     public void printPoints() {
