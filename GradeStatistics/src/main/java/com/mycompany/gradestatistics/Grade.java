@@ -7,6 +7,7 @@ package com.mycompany.gradestatistics;
 import java.util.Collections;
 import java.lang.Math;
 import java.util.Arrays;
+import java.lang.Object;
 
 /**
  *
@@ -86,22 +87,20 @@ public class Grade {
         int[] dist = {0,0,0,0,0,0};
         Collections.sort(pointlist.points);
         
-        //System.out.println("Sorted: ");
         for (int point : pointlist.points) {
-            //double floatPoint = point;
-            double round = Math.ceil((point-50)/10);
-            //int rounded = round;
+            int round = (point-50) / 10 + (((point-50) % 10 == 0) ? 0 : 1); 
             
             if ((int) round <= 0) {
                 dist[0]++;
             } else {
                 dist[(int) round]++;
             }
-            
-            System.out.println("Point: " + point);
-            System.out.println("Rounded: " + round);
-            //System.out.println((point - 50)/10);
-            System.out.println("Array: " + Arrays.toString(dist));
         }
+            
+            System.out.println("Grade distribution: ");
+            for (int i = dist.length - 1; i >= 0; i--) {          
+                System.out.println(i + ": " + String.join("", Collections.nCopies(dist[i], "*")));
+            }
+  
     }
 }
